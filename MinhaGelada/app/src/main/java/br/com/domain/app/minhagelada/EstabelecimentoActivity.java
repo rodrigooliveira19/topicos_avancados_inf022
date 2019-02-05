@@ -6,10 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import br.com.domain.app.minhagelada.controller.EstabelecimentoController;
+
 public class EstabelecimentoActivity extends AppCompatActivity {
 
     private TextInputLayout textDescricao;
     private TextInputLayout textLocalizacao;
+
+    private EstabelecimentoController estabelecimentoController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +22,8 @@ public class EstabelecimentoActivity extends AppCompatActivity {
 
         textDescricao = findViewById(R.id.id_text_input_desc_estabelecimento);
         textLocalizacao = findViewById(R.id.id_text_input_locali_estabelecimento);
+
+        estabelecimentoController = new EstabelecimentoController(getApplicationContext());
     }
 
     private boolean validar(){
@@ -46,11 +52,18 @@ public class EstabelecimentoActivity extends AppCompatActivity {
     public boolean salvar(View view){
         if(this.validar()){
             String descricao = textDescricao.getEditText().getText().toString();
-            descricao+="\n";
-            descricao+= textLocalizacao.getEditText().getText().toString();
+            String localizacao= textLocalizacao.getEditText().getText().toString();
 
-            Toast.makeText(getApplicationContext(),descricao,Toast.LENGTH_SHORT).show();
-            return true;
+            boolean result =estabelecimentoController.insert(descricao,localizacao);
+            if(result){
+                Toast.makeText(getApplicationContext(),"Estabelecimento Cadastrado com sucesso",
+                                                                     Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            else
+                return  false;
+
+
         }
 
         return false;
