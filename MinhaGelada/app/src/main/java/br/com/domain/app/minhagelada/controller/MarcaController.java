@@ -2,28 +2,27 @@ package br.com.domain.app.minhagelada.controller;
 
 import android.content.Context;
 
-import br.com.domain.app.minhagelada.daoDB.EstabelecimentoDao;
-import br.com.domain.app.minhagelada.entidades.Estabelecimento;
+import br.com.domain.app.minhagelada.daoDB.MarcaDao;
+import br.com.domain.app.minhagelada.entidades.Marca;
 
-public class EstabelecimentoController {
+public class MarcaController {
 
-    private EstabelecimentoDao estabelecimentoDao;
+    private MarcaDao marcaDao;
 
-    public EstabelecimentoController(Context context){
-       this.estabelecimentoDao = new EstabelecimentoDao(context);
+    public MarcaController(Context context){
+       this.marcaDao = new MarcaDao(context);
     }
 
-    private Estabelecimento createEstabelecimento(String descricao, String localizacao){
-        Estabelecimento estabelecimento;
-        estabelecimento = new Estabelecimento();
-        estabelecimento.setDescricao(descricao);
-        estabelecimento.setLocalizacao(localizacao);
-        return estabelecimento;
+    private Marca createMarca(String descricao){
+        Marca marca;
+        marca = new Marca();
+        marca.setDescricao(descricao);
+        return marca;
 
     }
 
-    public boolean insert(String descricao, String localizacao){
-        return estabelecimentoDao.insert(this.createEstabelecimento(descricao,localizacao));
+    public boolean insert(String descricao){
+        return marcaDao.insert(this.createMarca(descricao));
     }
 
 }

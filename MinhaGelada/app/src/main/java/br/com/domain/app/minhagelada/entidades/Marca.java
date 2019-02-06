@@ -1,4 +1,4 @@
 package br.com.domain.app.minhagelada.entidades;
 
-public class Marca {
+public class Marca extends AbstractEntidadePadrao {
 }

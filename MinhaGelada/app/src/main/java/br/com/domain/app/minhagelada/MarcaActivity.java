@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import br.com.domain.app.minhagelada.controller.MarcaController;
+
 public class MarcaActivity extends AppCompatActivity {
 
     private TextInputLayout textDescricao;
+    private MarcaController marcaController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +19,7 @@ public class MarcaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_marca);
 
         textDescricao = findViewById(R.id.id_text_input_desc_marca);
+        marcaController = new MarcaController(getApplicationContext());
     }
 
 
@@ -39,9 +43,10 @@ public class MarcaActivity extends AppCompatActivity {
     public boolean salvar(View view){
         if(this.validar()){
             String descricao = textDescricao.getEditText().getText().toString();
-            descricao+="\n";
+            boolean result = marcaController.insert(descricao);
 
-            Toast.makeText(getApplicationContext(),descricao,Toast.LENGTH_SHORT).show();
+            if(result)
+                Toast.makeText(getApplicationContext(),"Marca cadastrada com Sucesso",Toast.LENGTH_SHORT).show();
             return true;
         }
         return false;

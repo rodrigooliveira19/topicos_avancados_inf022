@@ -6,24 +6,24 @@ import android.database.sqlite.SQLiteDatabase;
 
 import br.com.domain.app.minhagelada.conexaoDB.ConexaoDB;
 import br.com.domain.app.minhagelada.entidades.Estabelecimento;
+import br.com.domain.app.minhagelada.entidades.Marca;
 
-public class EstabelecimentoDao {
+public class MarcaDao {
 
     private ConexaoDB conexaoDB;
     private SQLiteDatabase banco;
 
-    public EstabelecimentoDao(Context context){
+    public MarcaDao(Context context){
         this.conexaoDB = new ConexaoDB(context);
         this.banco = conexaoDB.getWritableDatabase();
     }
 
-    public boolean insert(Estabelecimento estabelecimento){
+    public boolean insert(Marca marca){
         ContentValues values = new ContentValues();
 
-        values.put("descricao",estabelecimento.getDescricao());
-        values.put("localizacao",estabelecimento.getLocalizacao());
+        values.put("descricao",marca.getDescricao());
 
-        long result = this.banco.insert("estabelecimento",null,values);
+        long result = this.banco.insert("marca",null,values);
 
         if(result == -1)
             return false;

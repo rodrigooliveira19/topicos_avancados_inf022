@@ -25,7 +25,15 @@ public class ConexaoDB extends SQLiteOpenHelper {
                 "\n" +
                 ")";
 
+        String sqlTabelaMarca ="create table marca(\n" +
+                "    \n" +
+                "   id integer not null primary key autoincrement, \n" +
+                "   descricao varchar(20) not null \n" +
+                "\n" +
+                ")";
+
         db.execSQL(sqlTabelaEslabelecimento);
+        db.execSQL(sqlTabelaMarca);
 
     }
 
