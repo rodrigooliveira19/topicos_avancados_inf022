@@ -35,7 +35,7 @@ public class CadastroAcativity extends AppCompatActivity {
 
                 if(opcaoClicada.equals("Estabelecimento"))
                     startActivity(new Intent(CadastroAcativity.this,
-                                                            EstabelecimentoActivity.class));
+                                                            MenuDrawerctivity.class));
                 else if(opcaoClicada.equals("Marca"))
                     startActivity(new Intent(CadastroAcativity.this,
                                                             MarcaActivity.class));

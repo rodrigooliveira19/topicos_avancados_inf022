@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_estabelecimento"
+            android:icon="@drawable/ic_estabelecimento_op1"
+            android:title="Estabelecimento" />
+        <item
+            android:id="@+id/nav_marca"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Marca" />
+        <item
+            android:id="@+id/nav_unidade"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Unidade" />
+        <item
+            android:id="@+id/nav_filtro"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Filtro" />
+    </group>
+
+    <item android:title="Minha Cerveja">
+        <menu>
+            <item
+                android:id="@+id/nav_cesta"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Cesta" />
+        </menu>
+    </item>
+
+</menu>

@@ -27,7 +27,7 @@ public class FiltroActivity extends AppCompatActivity {
             return  false;
         }
         else if(descricao.isEmpty()){
-            textDescricao.setError("Descrição não pode estar em branco");
+            textDescricao.setError("Filtro não pode estar em branco");
             return  false;
         }
         else{

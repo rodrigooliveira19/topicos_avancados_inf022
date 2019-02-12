@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import br.com.domain.app.minhagelada.controller.UnidadeController;
+
 public class UnidadeActivity extends AppCompatActivity {
 
     private TextInputLayout textDescricao;
+    private UnidadeController unidadeController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +19,7 @@ public class UnidadeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_unidade);
 
         textDescricao = findViewById(R.id.id_text_input_desc_unidade);
+        unidadeController = new UnidadeController(getApplicationContext());
     }
 
     private boolean validar(){
@@ -26,7 +30,7 @@ public class UnidadeActivity extends AppCompatActivity {
             return  false;
         }
         else if(descricao.isEmpty()){
-            textDescricao.setError("Descrição não pode estar em branco");
+            textDescricao.setError("Unidade não pode estar em branco");
             return  false;
         }
         else{
@@ -38,10 +42,11 @@ public class UnidadeActivity extends AppCompatActivity {
     public boolean salvar(View view){
         if(this.validar()){
             String descricao = textDescricao.getEditText().getText().toString();
-            descricao+="\n";
-
-            Toast.makeText(getApplicationContext(),descricao,Toast.LENGTH_SHORT).show();
-            return true;
+            boolean result = unidadeController.insert(descricao);
+            if(result)
+                Toast.makeText(getApplicationContext(),descricao,Toast.LENGTH_SHORT).show();
+            else
+                return false;
         }
         return false;
 

@@ -11,6 +11,10 @@
           android:title="Cadastro"
           app:showAsAction="never"/>
 
+    <item android:id="@+id/IdListar"
+        android:title="Listar"
+        app:showAsAction="never"/>
+
     <item android:id="@+id/idBuscar"
         android:title="Buscar"
         app:showAsAction="never"/>

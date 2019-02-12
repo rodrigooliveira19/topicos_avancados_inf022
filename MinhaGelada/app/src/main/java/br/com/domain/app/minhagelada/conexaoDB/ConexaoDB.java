@@ -32,8 +32,25 @@ public class ConexaoDB extends SQLiteOpenHelper {
                 "\n" +
                 ")";
 
+
+        String sqlTabelaUnidade ="create table unidade(\n" +
+                "    \n" +
+                "   id integer not null primary key autoincrement, \n" +
+                "   descricao varchar(7) not null \n" +
+                "\n" +
+                ")";
+
+        String sqlTabelaFiltro ="create table filtro(\n" +
+                "    \n" +
+                "   id integer not null primary key autoincrement, \n" +
+                "   descricao varchar(7) not null \n" +
+                "\n" +
+                ")";
+
         db.execSQL(sqlTabelaEslabelecimento);
         db.execSQL(sqlTabelaMarca);
+        db.execSQL(sqlTabelaUnidade);
+        db.execSQL(sqlTabelaFiltro);
 
     }
 

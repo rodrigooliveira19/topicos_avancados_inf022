@@ -9,19 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProdutoActivity"></activity>
+
+
+        <activity android:name=".ProdutoActivity" />
         <activity android:name=".FiltroActivity" />
         <activity android:name=".UnidadeActivity" />
         <activity android:name=".MarcaActivity" />
         <activity android:name=".EstabelecimentoActivity" />
         <activity android:name=".CadastroAcativity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MenuDrawerctivity"
+            android:label="@string/title_activity_drawerctivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+
     </application>
 
 </manifest>
