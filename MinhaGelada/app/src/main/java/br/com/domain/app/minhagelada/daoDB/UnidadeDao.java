@@ -2,7 +2,11 @@ package br.com.domain.app.minhagelada.daoDB;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.domain.app.minhagelada.conexaoDB.ConexaoDB;
 import br.com.domain.app.minhagelada.entidades.Unidade;
@@ -28,5 +32,23 @@ public class UnidadeDao {
             return false;
         else
             return true;
+    }
+
+    public List<Unidade> selectAll(){
+        List<Unidade> unidades = new ArrayList<>();
+        String[] colunas ={"id","descricao"};
+        Cursor cursor = banco.query("unidade",colunas,null,null,
+                null,null,null);
+        while(cursor.moveToNext()){
+            int id = cursor.getInt(cursor.getColumnIndex("id"));
+            String descricao = cursor.getString(cursor.getColumnIndex("descricao"));
+
+            Unidade unidade = new Unidade();
+            unidade.setId(id);
+            unidade.setDescricao(descricao);
+            unidades.add(unidade);
+        }
+        cursor.close();
+        return unidades;
     }
 }

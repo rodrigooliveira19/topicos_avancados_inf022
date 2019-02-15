@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+
+
 public class CadastroAcativity extends AppCompatActivity {
 
     private ListView listCadastro;

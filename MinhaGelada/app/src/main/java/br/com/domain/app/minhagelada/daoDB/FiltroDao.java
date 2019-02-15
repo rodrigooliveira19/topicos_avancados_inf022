@@ -2,10 +2,15 @@ package br.com.domain.app.minhagelada.daoDB;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.domain.app.minhagelada.conexaoDB.ConexaoDB;
 import br.com.domain.app.minhagelada.entidades.Filtro;
+
 
 public class FiltroDao {
 
@@ -28,5 +33,23 @@ public class FiltroDao {
             return false;
         else
             return true;
+    }
+
+    public List<Filtro> selectAll(){
+        List<Filtro> filtros = new ArrayList<>();
+        String[] colunas ={"id","descricao"};
+        Cursor cursor = banco.query("filtro",colunas,null,null,
+                null,null,null);
+        while(cursor.moveToNext()){
+            int id = cursor.getInt(cursor.getColumnIndex("id"));
+            String descricao = cursor.getString(cursor.getColumnIndex("descricao"));
+
+            Filtro filtro = new Filtro();
+            filtro.setId(id);
+            filtro.setDescricao(descricao);
+            filtros.add(filtro);
+        }
+        cursor.close();
+        return filtros;
     }
 }

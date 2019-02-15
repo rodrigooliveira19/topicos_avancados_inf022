@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".listagem.ListaDeMarcasActivity"></activity>
+        <activity android:name=".listagem.ListaDeFiltrosActivity"></activity>
+        <activity android:name=".listagem.ListaDeMarcasActivity" />
         <activity android:name=".listagem.ListaDeEstabelecimentosActivity" />
         <activity android:name=".ProdutoActivity" />
         <activity android:name=".FiltroActivity" />

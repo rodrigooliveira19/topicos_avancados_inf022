@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import br.com.domain.app.minhagelada.listagem.ListaDeEstabelecimentosActivity;
+import br.com.domain.app.minhagelada.listagem.ListaDeFiltrosActivity;
 import br.com.domain.app.minhagelada.listagem.ListaDeMarcasActivity;
 
 public class MenuDrawerctivity extends AppCompatActivity
@@ -76,19 +77,15 @@ public class MenuDrawerctivity extends AppCompatActivity
 
         } else if (id == R.id.nav_filtro) {
             startActivity(new Intent(MenuDrawerctivity.this,
-                                                    FiltroActivity.class));
+                                                    ListaDeFiltrosActivity.class));
 
         } else if (id == R.id.nav_cesta) {
             Toast.makeText(getApplicationContext(), "Toquei cesta",
                     Toast.LENGTH_SHORT).show();
 
-        } /*else if (id == R.id.nav_send) {
-            Toast.makeText(getApplicationContext(), "Toquei na send",
-                    Toast.LENGTH_SHORT).show();
+        }
 
-        }*/
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
