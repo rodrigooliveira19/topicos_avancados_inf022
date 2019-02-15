@@ -1,5 +1,6 @@
 package br.com.domain.app.minhagelada;
 
+import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import br.com.domain.app.minhagelada.controller.UnidadeController;
+import br.com.domain.app.minhagelada.listagem.ListaDeUnidadesActivity;
 
 public class UnidadeActivity extends AppCompatActivity {
 
@@ -43,8 +45,12 @@ public class UnidadeActivity extends AppCompatActivity {
         if(this.validar()){
             String descricao = textDescricao.getEditText().getText().toString();
             boolean result = unidadeController.insert(descricao);
-            if(result)
+            if(result){
                 Toast.makeText(getApplicationContext(),descricao,Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(UnidadeActivity.this,
+                                                        ListaDeUnidadesActivity.class));
+            }
+
             else
                 return false;
         }
