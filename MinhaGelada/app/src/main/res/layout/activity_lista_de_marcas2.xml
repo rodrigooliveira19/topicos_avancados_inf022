@@ -6,12 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="br.com.domain.app.minhagelada.listagem.ListaDeEstabelecimentosActivity"
-    tools:showIn="@layout/activity_lista_de_estabelecimentos">
-
+    tools:context="br.com.domain.app.minhagelada.listagem.ListaDeMarcasActivity"
+    tools:showIn="@layout/activity_lista_de_marcas2">
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingButtonAddEstabelecimento"
+        android:id="@+id/floatingButtonAddMarca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="260dp"
@@ -27,7 +26,7 @@
         app:srcCompat="@android:drawable/ic_input_add" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerViewMarca"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
@@ -42,7 +41,7 @@
         tools:listitem="@layout/item_lista" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textListaMarca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -50,7 +49,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="200dp"
         android:layout_marginRight="200dp"
-        android:text="Estabelecimentos"
+        android:text="Marcas"
         android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,4 +57,3 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
-

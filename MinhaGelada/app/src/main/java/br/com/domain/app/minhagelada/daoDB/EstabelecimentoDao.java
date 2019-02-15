@@ -49,8 +49,7 @@ public class EstabelecimentoDao {
             estabelecimento.setId(id);
             estabelecimento.setDescricao(descricao);
             estabelecimento.setLocalizacao(localizacao);
-            for(int i=0;i<5;i++)
-                estabelecimentos.add(estabelecimento);
+            estabelecimentos.add(estabelecimento);
         }
         cursor.close();
         return estabelecimentos;

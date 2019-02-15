@@ -1,5 +1,6 @@
 package br.com.domain.app.minhagelada;
 
+import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import br.com.domain.app.minhagelada.controller.EstabelecimentoController;
+import br.com.domain.app.minhagelada.listagem.ListaDeEstabelecimentosActivity;
 
 public class EstabelecimentoActivity extends AppCompatActivity {
 
@@ -58,6 +60,8 @@ public class EstabelecimentoActivity extends AppCompatActivity {
             if(result){
                 Toast.makeText(getApplicationContext(),"Estabelecimento Cadastrado com sucesso",
                                                                      Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(EstabelecimentoActivity.this,
+                                                        ListaDeEstabelecimentosActivity.class));
                 return true;
             }
             else

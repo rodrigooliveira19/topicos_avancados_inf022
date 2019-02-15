@@ -7,16 +7,16 @@ import android.widget.TextView;
 
 import br.com.domain.app.minhagelada.R;
 
-public class EstabelecimentoHolder extends RecyclerView.ViewHolder{
+public class MarcaHolder extends RecyclerView.ViewHolder{
 
     public TextView descricao;
     public ImageButton btnEditar;
     public ImageButton btnExcluir;
 
-    public EstabelecimentoHolder(View itemView) {
+    public MarcaHolder(View itemView) {
         super(itemView);
-        descricao = itemView.findViewById(R.id.descricao);
-        btnEditar = itemView.findViewById(R.id.btnEdit);
+        descricao =  itemView.findViewById(R.id.descricao);
+        btnEditar =  itemView.findViewById(R.id.btnEdit);
         btnExcluir = itemView.findViewById(R.id.btnDelete);
     }
 }

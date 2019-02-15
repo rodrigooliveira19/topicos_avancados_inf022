@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import br.com.domain.app.minhagelada.listagem.ListaDeEstabelecimentosActivity;
+import br.com.domain.app.minhagelada.listagem.ListaDeMarcasActivity;
 
 public class MenuDrawerctivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -64,10 +65,10 @@ public class MenuDrawerctivity extends AppCompatActivity
 
         if (id == R.id.nav_estabelecimento) {
             startActivity(new Intent(MenuDrawerctivity.this,
-                                                    EstabelecimentoActivity.class));
+                                                    ListaDeEstabelecimentosActivity.class));
         } else if (id == R.id.nav_marca) {
             startActivity(new Intent(MenuDrawerctivity.this,
-                                                    MarcaActivity.class));
+                                                   ListaDeMarcasActivity.class));
 
         } else if (id == R.id.nav_unidade) {
             startActivity(new Intent(MenuDrawerctivity.this,
@@ -80,8 +81,6 @@ public class MenuDrawerctivity extends AppCompatActivity
         } else if (id == R.id.nav_cesta) {
             Toast.makeText(getApplicationContext(), "Toquei cesta",
                     Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(MenuDrawerctivity.this,
-                                                   ListaDeEstabelecimentosActivity.class));
 
         } /*else if (id == R.id.nav_send) {
             Toast.makeText(getApplicationContext(), "Toquei na send",

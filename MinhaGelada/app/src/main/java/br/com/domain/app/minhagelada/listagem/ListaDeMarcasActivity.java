@@ -9,42 +9,42 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import br.com.domain.app.minhagelada.EstabelecimentoActivity;
+import br.com.domain.app.minhagelada.MarcaActivity;
 import br.com.domain.app.minhagelada.R;
-import br.com.domain.app.minhagelada.daoDB.EstabelecimentoDao;
+import br.com.domain.app.minhagelada.daoDB.MarcaDao;
 
+public class ListaDeMarcasActivity extends AppCompatActivity {
 
-public class ListaDeEstabelecimentosActivity extends AppCompatActivity {
-
-    RecyclerView recyclerView;
-    EstabelecimentoAdapter adapter;
+    RecyclerView recyclerViewMarca;
+    MarcaAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_de_estabelecimentos);
+        setContentView(R.layout.activity_lista_de_marcas2);
+
         this.configurarRecycler();
 
-        FloatingActionButton fab = findViewById(R.id.floatingButtonAddEstabelecimento);
+        FloatingActionButton fab = findViewById(R.id.floatingButtonAddMarca);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ListaDeEstabelecimentosActivity.this,
-                        EstabelecimentoActivity.class));
+                startActivity(new Intent(ListaDeMarcasActivity.this,
+                                                        MarcaActivity.class));
             }
         });
     }
 
     private void configurarRecycler() {
         // Configurando o gerenciador de layout para ser uma lista.
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        recyclerViewMarca = findViewById(R.id.recyclerViewMarca);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerViewMarca.setLayoutManager(layoutManager);
 
         // Adiciona o adapter que irá anexar os objetos à lista.
-        EstabelecimentoDao dao = new EstabelecimentoDao(this);
-        adapter = new EstabelecimentoAdapter(dao.selectAll());
-        recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        MarcaDao marcaDao = new MarcaDao(this);
+        adapter = new MarcaAdapter(marcaDao.selectAll());
+        recyclerViewMarca.setAdapter(adapter);
+        recyclerViewMarca.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
 }
