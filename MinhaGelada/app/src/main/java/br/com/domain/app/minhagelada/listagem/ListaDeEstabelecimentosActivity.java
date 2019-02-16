@@ -23,6 +23,7 @@ public class ListaDeEstabelecimentosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_de_estabelecimentos);
+
         this.configurarRecycler();
 
         FloatingActionButton fab = findViewById(R.id.floatingButtonAddEstabelecimento);

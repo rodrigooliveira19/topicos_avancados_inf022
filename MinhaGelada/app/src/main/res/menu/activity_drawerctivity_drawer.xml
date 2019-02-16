@@ -20,6 +20,10 @@
             android:id="@+id/nav_filtro"
             android:icon="@drawable/ic_menu_manage"
             android:title="Filtro" />
+        <item
+            android:id="@+id/nav_Novo"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Novo" />
     </group>
 
     <item android:title="Minha Cerveja">
