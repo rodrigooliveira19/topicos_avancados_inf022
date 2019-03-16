@@ -81,8 +81,8 @@ public class MenuDrawerctivity extends AppCompatActivity
                                                     ListaDeFiltrosActivity.class));
 
         } else if (id == R.id.nav_cesta) {
-            Toast.makeText(getApplicationContext(), "Toquei cesta",
-                    Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MenuDrawerctivity.this,
+                    CestaActivity.class));
 
         }
 

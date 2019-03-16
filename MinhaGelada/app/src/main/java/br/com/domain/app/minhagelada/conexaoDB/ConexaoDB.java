@@ -47,10 +47,33 @@ public class ConexaoDB extends SQLiteOpenHelper {
                 "\n" +
                 ")";
 
+        String sqlTabelaCesta ="create table cesta(\n" +
+                "    \n" +
+                "   id integer not null primary key autoincrement, \n" +
+                "   descricao varchar(7) not null \n" +
+                "\n" +
+                ")";
+
+        String sqlTabelaItemCesta ="create table item_cesta(\n" +
+                "    \n" +
+                "   id integer not null primary key autoincrement, \n" +
+                "   cesta_id int not null, \n" +
+                "   estabelecimento_id int not null, \n" +
+                "   marca_id int not null, \n" +
+                "   unidade_id int not null, \n" +
+                "   filtro_id int not null, \n" +
+                "   valor numeric(10,2) not null \n" +
+                "\n" +
+                ")";
+
+
+
         db.execSQL(sqlTabelaEslabelecimento);
         db.execSQL(sqlTabelaMarca);
         db.execSQL(sqlTabelaUnidade);
         db.execSQL(sqlTabelaFiltro);
+        db.execSQL(sqlTabelaCesta);
+        db.execSQL(sqlTabelaItemCesta);
 
     }
 
