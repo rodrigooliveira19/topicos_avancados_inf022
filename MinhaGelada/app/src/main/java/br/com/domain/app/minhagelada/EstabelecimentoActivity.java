@@ -66,8 +66,6 @@ public class EstabelecimentoActivity extends AppCompatActivity {
             }
             else
                 return  false;
-
-
         }
 
         return false;

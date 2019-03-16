@@ -8,10 +8,9 @@ public class Cesta {
     private int id;
     private String descricao;
 
-    List itemCesta;
+    List<ItemCesta> itemCesta;
 
-    public Cesta(String descricao){
-        this.descricao = descricao;
+    public Cesta(){
         itemCesta = new ArrayList<ItemCesta>();
     }
 
@@ -30,4 +29,5 @@ public class Cesta {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
 }

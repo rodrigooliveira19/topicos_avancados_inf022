@@ -22,6 +22,7 @@
 
     <include layout="@layout/content_drawerctivity" />
 
+    //retirei daq.
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -30,5 +31,8 @@
         android:layout_margin="@dimen/fab_margin"
         app:backgroundTint="@android:color/background_light"
         app:srcCompat="@android:drawable/ic_input_add" />
+
+
+
 
 </android.support.design.widget.CoordinatorLayout>
