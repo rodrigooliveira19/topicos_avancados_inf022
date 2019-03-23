@@ -2,6 +2,8 @@ package br.com.domain.app.minhagelada.controller;
 
 import android.content.Context;
 
+import java.util.List;
+
 import br.com.domain.app.minhagelada.daoDB.MarcaDao;
 import br.com.domain.app.minhagelada.entidades.Marca;
 
@@ -23,6 +25,10 @@ public class MarcaController {
 
     public boolean insert(String descricao){
         return marcaDao.insert(this.createMarca(descricao));
+    }
+
+    public List<Marca> selectAll(){
+        return this.marcaDao.selectAll();
     }
 
 }

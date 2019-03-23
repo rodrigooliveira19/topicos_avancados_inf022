@@ -2,6 +2,8 @@ package br.com.domain.app.minhagelada.controller;
 
 import android.content.Context;
 
+import java.util.List;
+
 import br.com.domain.app.minhagelada.daoDB.UnidadeDao;
 import br.com.domain.app.minhagelada.entidades.Unidade;
 
@@ -23,6 +25,11 @@ public class UnidadeController {
 
     public boolean insert(String descricao){
         return unidadeDao.insert(this.createUnidade(descricao));
+    }
+
+    public List<Unidade> selectAll(){
+        return this.unidadeDao.selectAll();
+
     }
 
 }

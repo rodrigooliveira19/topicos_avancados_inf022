@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".ItemCestaActivity">
+
+
+    <TextView
+        android:id="@+id/textMarca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Marca" />
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/marcaSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.AppCompatSpinner>
+
+    <TextView
+        android:id="@+id/textUnidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Unidade" />
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/unidadeSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.AppCompatSpinner>
+
+    <TextView
+        android:id="@+id/textFiltro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Filtro" />
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/filtroSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.AppCompatSpinner>
+
+
+    <TextView
+        android:id="@+id/textValor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Valor" />
+
+    <EditText
+        android:id="@+id/editValor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+
+    <Button
+        android:id="@+id/btSalvarItemCesta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="Salvar"
+        android:onClick="salvar"/>
+
+
+
+</LinearLayout>
