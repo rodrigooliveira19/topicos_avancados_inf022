@@ -84,7 +84,7 @@ public class MenuDrawerctivity extends AppCompatActivity
 
         } else if (id == R.id.nav_cesta) {
             startActivity(new Intent(MenuDrawerctivity.this,
-                    ItemCestaActivity.class));//ListaDeCestaActivity
+                    ListaDeCestaActivity.class));
 
         }
 

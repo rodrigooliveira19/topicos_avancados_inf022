@@ -57,12 +57,22 @@ public class ConexaoDB extends SQLiteOpenHelper {
         String sqlTabelaItemCesta ="create table item_cesta(\n" +
                 "    \n" +
                 "   id integer not null primary key autoincrement, \n" +
-                "   cesta_id int not null, \n" +
-                "   estabelecimento_id int not null, \n" +
-                "   marca_id int not null, \n" +
-                "   unidade_id int not null, \n" +
-                "   filtro_id int not null, \n" +
-                "   valor numeric(10,2) not null \n" +
+                "   cesta_id integer not null, \n" +
+                "   estabelecimento_id integer not null, \n" +
+                "   marca_id integer not null, \n" +
+                "   unidade_id integer not null, \n" +
+                "   filtro_id integer not null, \n" +
+                "   valor numeric(10,2) not null, \n" +
+                "   constraint fk_cesta_i_cesta " +
+                "       foreign key(cesta_id) REFERENCES cesta(id), " +
+                "   constraint fk_estabelecimento_i_cesta " +
+                "       foreign key(estabelecimento_id) REFERENCES estabelecimento(id), " +
+                "   constraint fk_marca_i_cesta " +
+                "       foreign key(marca_id) REFERENCES marca(id), " +
+                "   constraint fk_unidade_i_cesta " +
+                "        foreign key(unidade_id) REFERENCES unidade(id), " +
+                "   constraint fk_filtro_i_cesta " +
+                "        foreign key(filtro_id) REFERENCES filtro(id) " +
                 "\n" +
                 ")";
 
