@@ -14,38 +14,26 @@ import java.util.List;
 
 import br.com.domain.app.minhagelada.controller.CestaController;
 import br.com.domain.app.minhagelada.controller.EstabelecimentoController;
+import br.com.domain.app.minhagelada.entidades.Cesta;
 import br.com.domain.app.minhagelada.entidades.Estabelecimento;
 import br.com.domain.app.minhagelada.listagem.ListaDeCestaActivity;
 
 public class CestaActivity extends AppCompatActivity {
 
-    private Spinner estabelecimetoSpinner;
     private TextInputLayout textDescricao;
 
     private CestaController cestaController;
-    private EstabelecimentoController estabelecimentoController;
 
-    private List<Estabelecimento> estabelecimentos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cesta);
 
-        this.estabelecimetoSpinner = findViewById(R.id.estabelecimentoSpinner);
         this.textDescricao = findViewById(R.id.id_text_input_desc_cesta);
 
         this.cestaController = new CestaController(getApplicationContext());
-        this.estabelecimentoController = new EstabelecimentoController(getApplicationContext());
 
-        this.estabelecimentos = estabelecimentoController.selectAll();
-
-        //ArrayAdapter utilizado para carrregar o spinner com os Estabelecimentos.
-        ArrayAdapter<Estabelecimento> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item,this.estabelecimentos);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        estabelecimetoSpinner.setAdapter(adapter);
     }
 
     public void salvar(View view){
@@ -80,4 +68,18 @@ public class CestaActivity extends AppCompatActivity {
             return  true;
         }
     }
+
+/*
+    private int getIndex(Spinner spinner, String myString)
+    {
+        int index = 0;
+        for (int i=0;i<spinner.getCount();i++){
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(myString)){
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+    */
 }

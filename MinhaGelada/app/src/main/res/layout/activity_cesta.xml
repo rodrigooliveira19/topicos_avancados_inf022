@@ -25,14 +25,6 @@
     </android.support.design.widget.TextInputLayout>
 
 
-    <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/estabelecimentoSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    </android.support.v7.widget.AppCompatSpinner>
-
-
     <Button
         android:id="@+id/btSalvarCesta"
         android:layout_width="match_parent"
