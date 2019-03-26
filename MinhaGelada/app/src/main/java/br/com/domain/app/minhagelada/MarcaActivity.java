@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+
 import br.com.domain.app.minhagelada.controller.MarcaController;
+
 import br.com.domain.app.minhagelada.listagem.ListaDeMarcasActivity;
+
 
 public class MarcaActivity extends AppCompatActivity {
 
@@ -22,6 +25,7 @@ public class MarcaActivity extends AppCompatActivity {
 
         textDescricao = findViewById(R.id.id_text_input_desc_marca);
         marcaController = new MarcaController(getApplicationContext());
+
     }
 
 

@@ -1,16 +1,12 @@
 package br.com.domain.app.minhagelada.entidades;
+import com.google.gson.annotations.SerializedName;
 
 
 public abstract class AbstractEntidadePadrao {
 
     private int id;
+    @SerializedName("nome")
     private String descricao;
-
-   /*
-    public void AbstractEntidadePadrao(int id, String descricao){
-        this.id = id;
-        this.descricao = descricao;
-    }*/
 
     public void AbstractEntidadePadrao(){
 
