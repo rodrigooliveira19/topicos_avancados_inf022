@@ -44,9 +44,9 @@ public class ListaDeMarcasActivity extends AppCompatActivity {
             }
         });
 
-        //------------------------------------------------------------------
+        //Carregamento as Marcas a partir da biblioteca Retrofit.
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://sobral.pythonanywhere.com/")
+                .baseUrl("http://rodrigooliveira19.pythonanywhere.com/api_rest/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

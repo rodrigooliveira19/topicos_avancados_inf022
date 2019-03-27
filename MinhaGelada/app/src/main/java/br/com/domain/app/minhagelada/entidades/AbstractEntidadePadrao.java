@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 public abstract class AbstractEntidadePadrao {
 
     private int id;
-    @SerializedName("nome")
     private String descricao;
 
     public void AbstractEntidadePadrao(){
