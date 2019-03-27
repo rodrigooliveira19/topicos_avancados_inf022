@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ItemCestaActivity"></activity>
+        <activity android:name=".listagem.ListaDeItemActivity"></activity>
+        <activity android:name=".ItemCestaActivity" />
         <activity android:name=".listagem.ListaDeCestaActivity" />
         <activity android:name=".CestaActivity" />
         <activity android:name=".listagem.ListaDeUnidadesActivity" />

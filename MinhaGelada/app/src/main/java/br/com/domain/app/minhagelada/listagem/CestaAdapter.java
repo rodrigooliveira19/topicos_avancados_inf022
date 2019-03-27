@@ -51,6 +51,21 @@ public class CestaAdapter extends RecyclerView.Adapter<CestaHolder> {
             }
         });
 
+        holder.btnListItem.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Activity activity = getActivity(v);
+                Intent intent = new Intent(activity, ListaDeItemActivity.class);
+                intent.putExtra("idCesta", cesta.getId());
+                //intent.putExtra("idCesta", cesta.);
+                activity.startActivity(intent);
+
+            }
+        });
+
+
+
+
 
     }
 

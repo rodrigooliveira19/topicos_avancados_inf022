@@ -14,6 +14,10 @@ public class Cesta {
         itemCesta = new ArrayList<ItemCesta>();
     }
 
+    public Cesta(List<ItemCesta> itemCesta){
+        this.itemCesta = itemCesta;
+    }
+
     public int getId() {
         return id;
     }

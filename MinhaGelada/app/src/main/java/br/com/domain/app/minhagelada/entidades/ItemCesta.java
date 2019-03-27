@@ -9,9 +9,28 @@ public class ItemCesta {
     private Marca marca;
     private Unidade unidade;
     private Filtro filtro;
-    private double valor;
+    private float valor;
 
     public ItemCesta(){}
+
+    public  ItemCesta(String descEstabelecimento,
+                      String descMarca,
+                      String descUnidade,
+                      String descFiltro,
+                      int id,
+                      float valor){
+        this.estabelecimento = new Estabelecimento();
+        this.marca = new Marca();
+        this.unidade = new Unidade();
+        this.filtro = new Filtro();
+        this.id = id;
+        this.valor = valor;
+
+        this.estabelecimento.setDescricao(descEstabelecimento);
+        this.marca.setDescricao(descMarca);
+        this.unidade.setDescricao(descUnidade);
+        this.filtro.setDescricao(descFiltro);
+    }
 
 
     public int getId() {
@@ -66,7 +85,15 @@ public class ItemCesta {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(float valor) {
         this.valor = valor;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemCesta{" +
+                "Marca=" + this.estabelecimento.getDescricao() +
+                ", valor=" + this.valor +
+                '}';
     }
 }

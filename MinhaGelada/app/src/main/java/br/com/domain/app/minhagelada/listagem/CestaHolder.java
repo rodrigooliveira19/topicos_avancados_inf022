@@ -16,11 +16,13 @@ public class CestaHolder extends  RecyclerView.ViewHolder{
     public TextView descricao;
     public ImageButton btnAddItem;
     public ImageButton btnDeleteCesta;
+    public ImageButton btnListItem;
 
     public CestaHolder(View itemView){
         super(itemView);
         descricao = itemView.findViewById(R.id.descricaoCesta);
         btnAddItem = itemView.findViewById(R.id.btnAddItem);
         btnDeleteCesta = itemView.findViewById(R.id.btnDeleteCesta);
+        btnListItem = itemView.findViewById(R.id.btnListItem);
     }
 }

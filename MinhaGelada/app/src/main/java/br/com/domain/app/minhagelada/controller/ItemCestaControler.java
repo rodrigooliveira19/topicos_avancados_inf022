@@ -2,6 +2,8 @@ package br.com.domain.app.minhagelada.controller;
 
 import android.content.Context;
 
+import java.util.List;
+
 import br.com.domain.app.minhagelada.daoDB.ItemCestaDao;
 import br.com.domain.app.minhagelada.entidades.Estabelecimento;
 import br.com.domain.app.minhagelada.entidades.Filtro;
@@ -19,7 +21,7 @@ public class ItemCestaControler {
 
 
     private ItemCesta createItemCesta(Estabelecimento estabelecimento, Marca marca, Unidade unidade,
-                                      Filtro filtro, double valor, int idCesta){
+                                      Filtro filtro, float valor, int idCesta){
         ItemCesta itemCesta;
         itemCesta = new ItemCesta();
         itemCesta.setEstabelecimento(estabelecimento);
@@ -33,10 +35,14 @@ public class ItemCestaControler {
     }
 
     public boolean insert(Estabelecimento estabelecimento, Marca marca, Unidade unidade,
-                             Filtro filtro, double valor,int idCesta){
+                             Filtro filtro, float valor,int idCesta){
 
         ItemCesta itemCesta = this.createItemCesta(estabelecimento,marca,unidade,
                                                     filtro, valor, idCesta);
         return itemCestaDao.insert(itemCesta);
+    }
+
+    public List<ItemCesta> selectAll(int cesta_id){
+        return this.itemCestaDao.selectAll(cesta_id);
     }
 }

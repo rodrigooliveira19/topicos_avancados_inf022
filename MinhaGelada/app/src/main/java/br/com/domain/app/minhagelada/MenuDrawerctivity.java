@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import br.com.domain.app.minhagelada.listagem.ListaDeCestaActivity;
 import br.com.domain.app.minhagelada.listagem.ListaDeEstabelecimentosActivity;
 import br.com.domain.app.minhagelada.listagem.ListaDeFiltrosActivity;
+import br.com.domain.app.minhagelada.listagem.ListaDeItemActivity;
 import br.com.domain.app.minhagelada.listagem.ListaDeMarcasActivity;
 import br.com.domain.app.minhagelada.listagem.ListaDeUnidadesActivity;
 
@@ -84,7 +85,7 @@ public class MenuDrawerctivity extends AppCompatActivity
 
         } else if (id == R.id.nav_cesta) {
             startActivity(new Intent(MenuDrawerctivity.this,
-                    ListaDeCestaActivity.class));
+                    ListaDeCestaActivity.class));//
 
         }
 

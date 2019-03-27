@@ -25,6 +25,16 @@
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
         android:src="@android:drawable/ic_input_add"
+        app:layout_constraintRight_toLeftOf="@+id/btnListItem"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnListItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:src="@android:drawable/ic_menu_help"
         app:layout_constraintRight_toLeftOf="@+id/btnDeleteCesta"
         app:layout_constraintTop_toTopOf="parent" />
 
