@@ -91,9 +91,15 @@ public class ItemCesta {
 
     @Override
     public String toString() {
-        return "ItemCesta{" +
-                "Marca=" + this.estabelecimento.getDescricao() +
-                ", valor=" + this.valor +
+        return "Estabelecimento: " +
+                this.estabelecimento.getDescricao() +"\n"+
+                "Marca: " +
+                this.marca.getDescricao() +"\n"+
+                "Unidade: " +
+                this.unidade.getDescricao() +"\n"+
+                "Filtro: " +
+                this.filtro.getDescricao() +"\n"+
+                ", valor=" + this.valor +"\n"+
                 '}';
     }
 }
