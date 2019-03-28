@@ -58,22 +58,13 @@ public class ConexaoDB extends SQLiteOpenHelper {
                 "    \n" +
                 "   id integer not null primary key autoincrement, \n" +
                 "   cesta_id integer not null, \n" +
-                "   estabelecimento_id integer not null, \n" +
-                "   marca_id integer not null, \n" +
-                "   unidade_id integer not null, \n" +
-                "   filtro_id integer not null, \n" +
+                "   estabelecimento_desc varchar(30) not null, \n" +
+                "   marca_desc varchar(20) not null, \n" +
+                "   unidade_desc varchar(7) not null, \n" +
+                "   filtro_desc varchar(7) not null, \n" +
                 "   valor numeric(10,2) not null, \n" +
                 "   constraint fk_cesta_i_cesta " +
-                "       foreign key(cesta_id) REFERENCES cesta(id), " +
-                "   constraint fk_estabelecimento_i_cesta " +
-                "       foreign key(estabelecimento_id) REFERENCES estabelecimento(id), " +
-                "   constraint fk_marca_i_cesta " +
-                "       foreign key(marca_id) REFERENCES marca(id), " +
-                "   constraint fk_unidade_i_cesta " +
-                "        foreign key(unidade_id) REFERENCES unidade(id), " +
-                "   constraint fk_filtro_i_cesta " +
-                "        foreign key(filtro_id) REFERENCES filtro(id) " +
-                "\n" +
+                "       foreign key(cesta_id) REFERENCES cesta(id) " +
                 ")";
 
 

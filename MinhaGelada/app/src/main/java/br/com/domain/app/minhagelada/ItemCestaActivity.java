@@ -17,10 +17,12 @@ import br.com.domain.app.minhagelada.controller.FiltroController;
 import br.com.domain.app.minhagelada.controller.ItemCestaControler;
 import br.com.domain.app.minhagelada.controller.MarcaController;
 import br.com.domain.app.minhagelada.controller.UnidadeController;
+
 import br.com.domain.app.minhagelada.entidades.Estabelecimento;
 import br.com.domain.app.minhagelada.entidades.Filtro;
 import br.com.domain.app.minhagelada.entidades.Marca;
 import br.com.domain.app.minhagelada.entidades.Unidade;
+
 
 public class ItemCestaActivity extends AppCompatActivity {
 
@@ -49,6 +51,7 @@ public class ItemCestaActivity extends AppCompatActivity {
     private float valor;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,16 +69,19 @@ public class ItemCestaActivity extends AppCompatActivity {
         this.filtroController = new FiltroController(getApplicationContext());
         this.itemCestaControler = new ItemCestaControler(getApplicationContext());
 
+
         this.estabelecimentos = estabelecimentoController.selectAll();
         this.marcas = this.marcaController.selectAll();
         this.unidades = this.unidadeController.selectAll();
         this.filtros = this.filtroController.selectAll();
 
-        //Carregando os spiners
+
+        //CARREGANDO OS SPINNERS
 
         ArrayAdapter<Marca> adapterMarca = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item,this.marcas);
         adapterMarca.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
 
         ArrayAdapter<Unidade> adapterUnidade = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item,this.unidades);
@@ -89,6 +95,7 @@ public class ItemCestaActivity extends AppCompatActivity {
         ArrayAdapter<Estabelecimento> adapterEstabelecimento = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item,this.estabelecimentos);
         adapterEstabelecimento.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
 
         this.estabelecimentoSpinner.setAdapter(adapterEstabelecimento);
         this.marcaSpinner.setAdapter(adapterMarca);
@@ -213,4 +220,5 @@ public class ItemCestaActivity extends AppCompatActivity {
     private void  setEstabelecimento(Estabelecimento estabelecimento){
         this.estabelecimento = estabelecimento;
     }
+
 }

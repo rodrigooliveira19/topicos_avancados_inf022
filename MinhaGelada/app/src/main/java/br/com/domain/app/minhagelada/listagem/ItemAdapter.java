@@ -1,6 +1,8 @@
 package br.com.domain.app.minhagelada.listagem;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -38,4 +40,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemHolder>{
     public int getItemCount() {
         return itemCesta != null ? itemCesta.size() : 0;
     }
+
+
 }

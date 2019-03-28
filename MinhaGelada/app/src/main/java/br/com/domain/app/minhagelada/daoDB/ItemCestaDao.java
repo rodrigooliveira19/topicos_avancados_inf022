@@ -27,10 +27,10 @@ public class ItemCestaDao {
         ContentValues values = new ContentValues();
 
         values.put("cesta_id",itemCesta.getIdCesta());
-        values.put("estabelecimento_id",itemCesta.getEstabelecimento().getId());
-        values.put("marca_id",itemCesta.getMarca().getId());
-        values.put("unidade_id",itemCesta.getUnidade().getId());
-        values.put("filtro_id",itemCesta.getFiltro().getId());
+        values.put("estabelecimento_desc",itemCesta.getEstabelecimento().getDescricao());
+        values.put("marca_desc",itemCesta.getMarca().getDescricao());
+        values.put("unidade_desc",itemCesta.getUnidade().getDescricao());
+        values.put("filtro_desc",itemCesta.getFiltro().getDescricao());
         values.put("valor",itemCesta.getValor());
 
         long result = this.banco.insert("item_cesta",null,values);
@@ -47,24 +47,20 @@ public class ItemCestaDao {
         Cursor cursor = banco.rawQuery("select \n" +
                 "  item.id, \n" +
                 "  item.valor, \n" +
-                "  estabelecimento.descricao as descEstabelecimento,\n" +
-                "  marca.descricao as descMarca,\n" +
-                "  unidade.descricao as descUnidade,\n" +
-                "  filtro.descricao as descFiltro\n" +
+                "  item.estabelecimento_desc as estabelecimento_desc,\n" +
+                "  item.marca_desc as marca_desc,\n" +
+                "  item.unidade_desc as unidade_desc,\n" +
+                "  item.filtro_desc as filtro_desc\n" +
                 "from item_cesta as item\n" +
-                "inner join estabelecimento on estabelecimento.id = item.estabelecimento_id\n" +
-                "inner join marca on marca.id = item.marca_id\n" +
-                "inner join unidade on unidade.id = item.unidade_id\n" +
-                "inner join filtro on filtro.id = item.filtro_id\n" +
                 "where item.cesta_id = ?", new String[] { cesta_id + "" });
         while(cursor.moveToNext()){
             int id = cursor.getInt(cursor.getColumnIndex("id"));
             float valor = cursor.getFloat(cursor.getColumnIndex("valor"));
             String descEstabelecimento = cursor.
-                    getString(cursor.getColumnIndex("descEstabelecimento"));
-            String descMarca = cursor.getString(cursor.getColumnIndex("descMarca"));
-            String descUnidade = cursor.getString(cursor.getColumnIndex("descUnidade"));
-            String descFiltro = cursor.getString(cursor.getColumnIndex("descFiltro"));
+                    getString(cursor.getColumnIndex("estabelecimento_desc"));
+            String descMarca = cursor.getString(cursor.getColumnIndex("marca_desc"));
+            String descUnidade = cursor.getString(cursor.getColumnIndex("unidade_desc"));
+            String descFiltro = cursor.getString(cursor.getColumnIndex("filtro_desc"));
 
             itemCesta = new ItemCesta(descEstabelecimento,descMarca,descUnidade,descFiltro,id,valor);
 

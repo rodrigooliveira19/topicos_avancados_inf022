@@ -74,7 +74,7 @@ public class CestaAdapter extends RecyclerView.Adapter<CestaHolder> {
         return cestas != null ? cestas.size() : 0;
     }
 
-    //Método que permmite obiter uma activity a partir de uma view.
+    //Método que permite obiter uma activity a partir de uma view.
     private Activity getActivity(View view) {
         Context context = view.getContext();
         while (context instanceof ContextWrapper) {

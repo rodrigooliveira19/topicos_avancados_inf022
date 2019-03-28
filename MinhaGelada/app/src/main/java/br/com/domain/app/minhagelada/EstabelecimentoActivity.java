@@ -26,6 +26,15 @@ public class EstabelecimentoActivity extends AppCompatActivity {
         textLocalizacao = findViewById(R.id.id_text_input_locali_estabelecimento);
 
         estabelecimentoController = new EstabelecimentoController(getApplicationContext());
+
+        Bundle extra = getIntent().getExtras();
+
+        if(extra != null){
+            int id = extra.getInt("id");
+            String descricao = extra.getString("descricao");
+            String localizacao = extra.getString("localizacao");
+            Toast.makeText(getApplicationContext(),id+""+descricao,Toast.LENGTH_SHORT).show();
+        }
     }
 
     private boolean validar(){
