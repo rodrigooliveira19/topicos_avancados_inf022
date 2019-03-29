@@ -8,14 +8,22 @@ import android.view.View;
 import android.widget.Toast;
 
 import br.com.domain.app.minhagelada.controller.EstabelecimentoController;
+import br.com.domain.app.minhagelada.entidades.Estabelecimento;
+import br.com.domain.app.minhagelada.interfaceApi.JsonPlaceHolderApiEstabelecimento;
 import br.com.domain.app.minhagelada.listagem.ListaDeEstabelecimentosActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EstabelecimentoActivity extends AppCompatActivity {
 
     private TextInputLayout textDescricao;
     private TextInputLayout textLocalizacao;
 
-    private EstabelecimentoController estabelecimentoController;
+    private JsonPlaceHolderApiEstabelecimento jsonPlaceHolderApiEstabelecimento;
+    //private EstabelecimentoController estabelecimentoController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,16 +33,26 @@ public class EstabelecimentoActivity extends AppCompatActivity {
         textDescricao = findViewById(R.id.id_text_input_desc_estabelecimento);
         textLocalizacao = findViewById(R.id.id_text_input_locali_estabelecimento);
 
-        estabelecimentoController = new EstabelecimentoController(getApplicationContext());
+       // estabelecimentoController = new EstabelecimentoController(getApplicationContext());
+
+        //Instanciando um objeto Retrofit para comunicação com a api.
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://rodrigooliveira19.pythonanywhere.com/api_rest/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        jsonPlaceHolderApiEstabelecimento = retrofit.create(JsonPlaceHolderApiEstabelecimento.class);
+
 
         Bundle extra = getIntent().getExtras();
-
         if(extra != null){
             int id = extra.getInt("id");
             String descricao = extra.getString("descricao");
             Toast.makeText(getApplicationContext(),id+""+descricao,Toast.LENGTH_SHORT).show();
 
         }
+
+
     }
 
     private boolean validar(){
@@ -60,6 +78,7 @@ public class EstabelecimentoActivity extends AppCompatActivity {
         return false;
     }
 
+    /*
     public boolean salvar(View view){
         if(this.validar()){
             String descricao = textDescricao.getEditText().getText().toString();
@@ -78,5 +97,43 @@ public class EstabelecimentoActivity extends AppCompatActivity {
         }
 
         return false;
+    }
+    */
+
+    public boolean salvar(View view){
+        if(this.validar()){
+            String descricao = textDescricao.getEditText().getText().toString();
+
+            Call<Estabelecimento> call = jsonPlaceHolderApiEstabelecimento.
+                                               createEstabelecimento(descricao);
+
+            call.enqueue(new Callback<Estabelecimento>() {
+                @Override
+                public void onResponse(Call<Estabelecimento> call,
+                                                            Response<Estabelecimento> response) {
+
+                    if(!response.isSuccessful()){
+                        Toast.makeText(getApplicationContext(),"Erro: "+response.code(),
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    Estabelecimento estabelecimento = response.body();
+                    Toast.makeText(getApplicationContext(),"Estabelecimento: "
+                                    +estabelecimento.getDescricao()+ " cadastrado com sucesso",
+                            Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+                public void onFailure(Call<Estabelecimento> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(),t.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+        }
+        return  false;
     }
 }
