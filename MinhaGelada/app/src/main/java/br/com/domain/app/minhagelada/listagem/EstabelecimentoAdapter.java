@@ -45,8 +45,6 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
                 intent.putExtra("id", estabelecimentos.get(position).getId());
                 intent.putExtra("descricao", estabelecimentos.get(position).getDescricao());
 
-
-
                 activity.startActivity(intent);
 
             }

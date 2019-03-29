@@ -21,6 +21,8 @@ public class UnidadeActivity extends AppCompatActivity {
 
     private TextInputLayout textDescricao;
 
+    private Unidade unidade = null;
+
     private JsonPlaceHolderApiUnidade jsonPlaceHolderApiUnidade;
 
     //private UnidadeController unidadeController;
@@ -40,6 +42,16 @@ public class UnidadeActivity extends AppCompatActivity {
                 .build();
 
         jsonPlaceHolderApiUnidade = retrofit.create(JsonPlaceHolderApiUnidade.class);
+
+        Bundle extra = getIntent().getExtras();
+        if(extra != null){
+            int id = extra.getInt("id");
+            String descricao = extra.getString("descricao");
+            this.unidade = new Unidade();
+            this.unidade.setId(id);
+            this.unidade.setDescricao(descricao);
+            this.textDescricao.getEditText().setText(descricao);
+        }
     }
 
     private boolean validar(){
@@ -82,33 +94,69 @@ public class UnidadeActivity extends AppCompatActivity {
         if(this.validar()){
             String descricao = textDescricao.getEditText().getText().toString();
 
-            Call<Unidade> call = jsonPlaceHolderApiUnidade.createUnidade(descricao);
+            Call<Unidade> call;
 
-            call.enqueue(new Callback<Unidade>() {
-                @Override
-                public void onResponse(Call<Unidade> call,
-                                       Response<Unidade> response) {
+            if (this.unidade == null){
+                call = jsonPlaceHolderApiUnidade.createUnidade(descricao);
 
-                    if(!response.isSuccessful()){
-                        Toast.makeText(getApplicationContext(),"Erro: "+response.code(),
+                call.enqueue(new Callback<Unidade>() {
+                    @Override
+                    public void onResponse(Call<Unidade> call,
+                                           Response<Unidade> response) {
+
+                        if(!response.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),"Erro: "+response.code(),
+                                    Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        Unidade unidade = response.body();
+                        Toast.makeText(getApplicationContext(),"Unidade: "
+                                        +unidade.getDescricao()+ " cadastrado com sucesso",
                                 Toast.LENGTH_SHORT).show();
-                        return;
+
                     }
 
-                    Unidade unidade = response.body();
-                    Toast.makeText(getApplicationContext(),"Unidade: "
-                                    +unidade.getDescricao()+ " cadastrado com sucesso",
-                            Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onFailure(Call<Unidade> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),t.getMessage(),
+                                Toast.LENGTH_SHORT).show();
 
-                }
+                    }
+                });
 
-                @Override
-                public void onFailure(Call<Unidade> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(),t.getMessage(),
-                            Toast.LENGTH_SHORT).show();
+            }else{
+                this.unidade.setDescricao(descricao);
 
-                }
-            });
+                call = jsonPlaceHolderApiUnidade.updateUnidade(this.unidade);
+
+                call.enqueue(new Callback<Unidade>() {
+                    @Override
+                    public void onResponse(Call<Unidade> call,
+                                           Response<Unidade> response) {
+
+                        if(!response.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),"Erro: "+response.code(),
+                                    Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        Unidade unidade = response.body();
+                        Toast.makeText(getApplicationContext(),"Unidade: "
+                                        +unidade.getDescricao()+ " atualizada com sucesso",
+                                Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Unidade> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),t.getMessage(),
+                                Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+            }
 
         }
         return  false;

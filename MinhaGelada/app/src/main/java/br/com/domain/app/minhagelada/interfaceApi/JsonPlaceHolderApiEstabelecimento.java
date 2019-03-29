@@ -18,4 +18,8 @@ public interface JsonPlaceHolderApiEstabelecimento {
     @FormUrlEncoded
     @POST("cadastrarEstabelecimento/")
     Call<Estabelecimento> createEstabelecimento(@Field("descricao") String descricao);
+
+
+    @POST("atualizarEstabelecimento/")
+    Call<Estabelecimento> updateEstabelecimento(@Body Estabelecimento estabelecimento);
 }

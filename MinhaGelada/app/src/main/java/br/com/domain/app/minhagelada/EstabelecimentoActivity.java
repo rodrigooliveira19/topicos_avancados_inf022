@@ -22,6 +22,8 @@ public class EstabelecimentoActivity extends AppCompatActivity {
     private TextInputLayout textDescricao;
     private TextInputLayout textLocalizacao;
 
+    private  Estabelecimento estabelecimento = null;
+
     private JsonPlaceHolderApiEstabelecimento jsonPlaceHolderApiEstabelecimento;
     //private EstabelecimentoController estabelecimentoController;
 
@@ -48,8 +50,10 @@ public class EstabelecimentoActivity extends AppCompatActivity {
         if(extra != null){
             int id = extra.getInt("id");
             String descricao = extra.getString("descricao");
-            Toast.makeText(getApplicationContext(),id+""+descricao,Toast.LENGTH_SHORT).show();
-
+            this.estabelecimento = new Estabelecimento();
+            this.estabelecimento.setId(id);
+            this.estabelecimento.setDescricao(descricao);
+            this.textDescricao.getEditText().setText(descricao);
         }
 
 
@@ -103,35 +107,64 @@ public class EstabelecimentoActivity extends AppCompatActivity {
     public boolean salvar(View view){
         if(this.validar()){
             String descricao = textDescricao.getEditText().getText().toString();
+            Call<Estabelecimento> call;
 
-            Call<Estabelecimento> call = jsonPlaceHolderApiEstabelecimento.
-                                               createEstabelecimento(descricao);
+            if(this.estabelecimento == null){
+                call = jsonPlaceHolderApiEstabelecimento.createEstabelecimento(descricao);
 
-            call.enqueue(new Callback<Estabelecimento>() {
-                @Override
-                public void onResponse(Call<Estabelecimento> call,
-                                                            Response<Estabelecimento> response) {
+                call.enqueue(new Callback<Estabelecimento>() {
+                    @Override
+                    public void onResponse(Call<Estabelecimento> call,
+                                           Response<Estabelecimento> response) {
 
-                    if(!response.isSuccessful()){
-                        Toast.makeText(getApplicationContext(),"Erro: "+response.code(),
+                        if(!response.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),"Erro: "+response.code(),
+                                    Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        Estabelecimento estabelecimento = response.body();
+                        Toast.makeText(getApplicationContext(),"Estabelecimento: "
+                                        +estabelecimento.getDescricao()+ " cadastrado com sucesso",
                                 Toast.LENGTH_SHORT).show();
-                        return;
                     }
 
-                    Estabelecimento estabelecimento = response.body();
-                    Toast.makeText(getApplicationContext(),"Estabelecimento: "
-                                    +estabelecimento.getDescricao()+ " cadastrado com sucesso",
-                            Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onFailure(Call<Estabelecimento> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),t.getMessage(),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
 
-                }
+            }else{
+                this.estabelecimento.setDescricao(descricao);
+                call = jsonPlaceHolderApiEstabelecimento.updateEstabelecimento(this.estabelecimento);
 
-                @Override
-                public void onFailure(Call<Estabelecimento> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(),t.getMessage(),
-                            Toast.LENGTH_SHORT).show();
+                call.enqueue(new Callback<Estabelecimento>() {
+                    @Override
+                    public void onResponse(Call<Estabelecimento> call,
+                                           Response<Estabelecimento> response) {
 
-                }
-            });
+                        if(!response.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),"Erro: "+response.code(),
+                                    Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        Estabelecimento estabelecimento = response.body();
+                        Toast.makeText(getApplicationContext(),"Estabelecimento: "
+                                        +estabelecimento.getDescricao()+ " atualizado com sucesso",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Estabelecimento> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),t.getMessage(),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
 
         }
         return  false;

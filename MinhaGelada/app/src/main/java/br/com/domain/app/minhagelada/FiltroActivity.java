@@ -21,6 +21,8 @@ public class FiltroActivity extends AppCompatActivity {
 
     private TextInputLayout textDescricao;
 
+    private Filtro filtro = null;
+
     private JsonPlaceHolderApiFiltro jsonPlaceHolderApiFiltro;
     //private FiltroController filtroController;
 
@@ -39,6 +41,17 @@ public class FiltroActivity extends AppCompatActivity {
                 .build();
 
         jsonPlaceHolderApiFiltro = retrofit.create(JsonPlaceHolderApiFiltro.class);
+
+        Bundle extra = getIntent().getExtras();
+        if(extra != null){
+            int id = extra.getInt("id");
+            String descricao = extra.getString("descricao");
+            this.filtro = new Filtro();
+            this.filtro.setId(id);
+            this.filtro.setDescricao(descricao);
+            this.textDescricao.getEditText().setText(descricao);
+            Toast.makeText(getApplicationContext(),id+""+descricao,Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -82,34 +95,70 @@ public class FiltroActivity extends AppCompatActivity {
         if(this.validar()){
             String descricao = textDescricao.getEditText().getText().toString();
 
-            Call<Filtro> call = jsonPlaceHolderApiFiltro.
-                    createFiltro(descricao);
+            Call<Filtro> call;
 
-            call.enqueue(new Callback<Filtro>() {
-                @Override
-                public void onResponse(Call<Filtro> call,
-                                       Response<Filtro> response) {
+            if (this.filtro == null){
+                call = jsonPlaceHolderApiFiltro.createFiltro(descricao);
 
-                    if(!response.isSuccessful()){
-                        Toast.makeText(getApplicationContext(),"Erro: "+response.code(),
+                call.enqueue(new Callback<Filtro>() {
+                    @Override
+                    public void onResponse(Call<Filtro> call,
+                                           Response<Filtro> response) {
+
+                        if(!response.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),"Erro: "+response.code(),
+                                    Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        Filtro filtro = response.body();
+                        Toast.makeText(getApplicationContext(),"Filtro: "
+                                        +filtro.getDescricao()+ " cadastrado com sucesso",
                                 Toast.LENGTH_SHORT).show();
-                        return;
+
                     }
 
-                    Filtro filtro = response.body();
-                    Toast.makeText(getApplicationContext(),"Filtro: "
-                                    +filtro.getDescricao()+ " cadastrado com sucesso",
-                            Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onFailure(Call<Filtro> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),t.getMessage(),
+                                Toast.LENGTH_SHORT).show();
 
-                }
+                    }
+                });
 
-                @Override
-                public void onFailure(Call<Filtro> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(),t.getMessage(),
-                            Toast.LENGTH_SHORT).show();
+            }else{
+                this.filtro.setDescricao(descricao);
 
-                }
-            });
+                call = jsonPlaceHolderApiFiltro.updateFiltro(this.filtro);
+
+                call.enqueue(new Callback<Filtro>() {
+                    @Override
+                    public void onResponse(Call<Filtro> call,
+                                           Response<Filtro> response) {
+
+                        if(!response.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),"Erro: "+response.code(),
+                                    Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        Filtro filtro = response.body();
+                        Toast.makeText(getApplicationContext(),"Filtro: "
+                                        +filtro.getDescricao()+ " atualizado com sucesso",
+                                Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Filtro> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),t.getMessage(),
+                                Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+            }
+
 
         }
         return  false;

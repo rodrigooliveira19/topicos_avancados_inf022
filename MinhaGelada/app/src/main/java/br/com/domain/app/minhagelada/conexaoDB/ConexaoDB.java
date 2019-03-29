@@ -50,7 +50,7 @@ public class ConexaoDB extends SQLiteOpenHelper {
         String sqlTabelaCesta ="create table cesta(\n" +
                 "    \n" +
                 "   id integer not null primary key autoincrement, \n" +
-                "   descricao varchar(7) not null \n" +
+                "   descricao varchar(30) not null \n" +
                 "\n" +
                 ")";
 

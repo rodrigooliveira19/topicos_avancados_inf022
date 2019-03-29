@@ -24,6 +24,8 @@ public class MarcaActivity extends AppCompatActivity {
 
     private TextInputLayout textDescricao;
 
+    private Marca marca = null;
+
     private JsonPlaceHolderApiMarca jsonPlaceHolderApiMarca;
     private MarcaController marcaController;
 
@@ -42,6 +44,16 @@ public class MarcaActivity extends AppCompatActivity {
                 .build();
 
         jsonPlaceHolderApiMarca = retrofit.create(JsonPlaceHolderApiMarca.class);
+
+        Bundle extra = getIntent().getExtras();
+        if(extra != null){
+            int id = extra.getInt("id");
+            String descricao = extra.getString("descricao");
+            this.marca = new Marca();
+            this.marca.setId(id);
+            this.marca.setDescricao(descricao);
+            this.textDescricao.getEditText().setText(descricao);
+        }
 
     }
 
@@ -88,34 +100,68 @@ public class MarcaActivity extends AppCompatActivity {
         if(this.validar()){
             String descricao = textDescricao.getEditText().getText().toString();
 
-            Call<Marca> call = jsonPlaceHolderApiMarca.
-                    createMarca(descricao);
+            Call<Marca> call;
 
-            call.enqueue(new Callback<Marca>() {
-                @Override
-                public void onResponse(Call<Marca> call,
-                                       Response<Marca> response) {
+            if(this.marca == null){
+                call = jsonPlaceHolderApiMarca.createMarca(descricao);
 
-                    if(!response.isSuccessful()){
-                        Toast.makeText(getApplicationContext(),"Erro: "+response.code(),
+                call.enqueue(new Callback<Marca>() {
+                    @Override
+                    public void onResponse(Call<Marca> call,
+                                           Response<Marca> response) {
+
+                        if(!response.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),"Erro: "+response.code(),
+                                    Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        Marca marca = response.body();
+                        Toast.makeText(getApplicationContext(),"Marca: "
+                                        +marca.getDescricao()+ " cadastrada com sucesso",
                                 Toast.LENGTH_SHORT).show();
-                        return;
+
                     }
 
-                    Marca marca = response.body();
-                    Toast.makeText(getApplicationContext(),"Marca: "
-                                    +marca.getDescricao()+ " cadastrada com sucesso",
-                            Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onFailure(Call<Marca> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),t.getMessage(),
+                                Toast.LENGTH_SHORT).show();
 
-                }
+                    }
+                });
+            }else{
+                this.marca.setDescricao(descricao);
+                call = jsonPlaceHolderApiMarca.updateMarca(this.marca);
 
-                @Override
-                public void onFailure(Call<Marca> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(),t.getMessage(),
-                            Toast.LENGTH_SHORT).show();
+                call.enqueue(new Callback<Marca>() {
+                    @Override
+                    public void onResponse(Call<Marca> call,
+                                           Response<Marca> response) {
 
-                }
-            });
+                        if(!response.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),"Erro: "+response.code(),
+                                    Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        Marca marca = response.body();
+                        Toast.makeText(getApplicationContext(),"Marca: "
+                                        +marca.getDescricao()+ " atualizada com sucesso",
+                                Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Marca> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),t.getMessage(),
+                                Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+            }
+
+
 
         }
         return  false;
