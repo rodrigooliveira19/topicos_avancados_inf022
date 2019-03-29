@@ -54,6 +54,11 @@ public class EstabelecimentoActivity extends AppCompatActivity {
             this.estabelecimento.setId(id);
             this.estabelecimento.setDescricao(descricao);
             this.textDescricao.getEditText().setText(descricao);
+
+            boolean opDelete = extra.getBoolean("DELETE");
+            if(opDelete){
+                this.deleteEstabelecimento();
+            }
         }
 
 
@@ -168,5 +173,38 @@ public class EstabelecimentoActivity extends AppCompatActivity {
 
         }
         return  false;
+    }
+
+    private void deleteEstabelecimento(){
+        if(this.estabelecimento != null){
+
+            Call<Estabelecimento> call = jsonPlaceHolderApiEstabelecimento.
+                    deleteEstabelecimento(this.estabelecimento);
+
+            call.enqueue(new Callback<Estabelecimento>() {
+                @Override
+                public void onResponse(Call<Estabelecimento> call,
+                                       Response<Estabelecimento> response) {
+
+                    if(!response.isSuccessful()){
+                        Toast.makeText(getApplicationContext(),"Erro: "+response.code(),
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    Estabelecimento estabelecimento = response.body();
+                    Toast.makeText(getApplicationContext(),"Estabelecimento: "
+                                    +estabelecimento.getDescricao()+ " excluido com sucesso",
+                            Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Call<Estabelecimento> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(),t.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
     }
 }

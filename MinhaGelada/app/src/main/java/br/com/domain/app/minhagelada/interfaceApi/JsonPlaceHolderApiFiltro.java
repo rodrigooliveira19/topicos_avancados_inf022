@@ -21,4 +21,7 @@ public interface JsonPlaceHolderApiFiltro {
 
     @POST("atualizarFiltro/")
     Call<Filtro> updateFiltro(@Body Filtro filtro);
+
+    @POST("excluirFiltro/")
+    Call<Filtro> deleteFiltro(@Body Filtro filtro);
 }

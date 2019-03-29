@@ -41,9 +41,22 @@ public class UnidadeAdapter extends RecyclerView.Adapter<UnidadeHolder>{
                 Intent intent = new Intent(activity, UnidadeActivity.class);
                 intent.putExtra("id", unidades.get(position).getId());
                 intent.putExtra("descricao", unidades.get(position).getDescricao());
+                intent.putExtra("DELETE", false);
 
                 activity.startActivity(intent);
+            }
+        });
 
+        holder.btnExcluir.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Activity activity = getActivity(v);
+                Intent intent = new Intent(activity, UnidadeActivity.class);
+                intent.putExtra("id", unidades.get(position).getId());
+                intent.putExtra("descricao", unidades.get(position).getDescricao());
+                intent.putExtra("DELETE", true);
+
+                activity.startActivity(intent);
             }
         });
     }

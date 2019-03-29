@@ -354,10 +354,6 @@ public class ItemCestaActivity extends AppCompatActivity {
 
     private void  setEstabelecimento(Estabelecimento estabelecimento){
         this.estabelecimento = estabelecimento;
-        Toast.makeText(getApplicationContext(),""+this.estabelecimento.getDescricao()+
-                        ""+
-                        ""+this.idCesta,
-                Toast.LENGTH_SHORT).show();
     }
 
 

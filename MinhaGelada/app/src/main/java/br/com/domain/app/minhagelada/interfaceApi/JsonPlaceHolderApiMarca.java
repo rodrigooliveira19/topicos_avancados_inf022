@@ -21,4 +21,7 @@ public interface JsonPlaceHolderApiMarca {
 
     @POST("atualizarMarca/")
     Call<Marca> updateMarca(@Body Marca marca);
+
+    @POST("excluirMarca/")
+    Call<Marca> deleteMarca(@Body Marca marca);
 }

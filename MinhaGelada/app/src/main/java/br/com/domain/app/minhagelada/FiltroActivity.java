@@ -50,7 +50,11 @@ public class FiltroActivity extends AppCompatActivity {
             this.filtro.setId(id);
             this.filtro.setDescricao(descricao);
             this.textDescricao.getEditText().setText(descricao);
-            Toast.makeText(getApplicationContext(),id+""+descricao,Toast.LENGTH_SHORT).show();
+
+            boolean opDelete = extra.getBoolean("DELETE");
+            if(opDelete){
+                this.deleteFiltro();
+            }
         }
     }
 
@@ -162,5 +166,38 @@ public class FiltroActivity extends AppCompatActivity {
 
         }
         return  false;
+    }
+
+    private void deleteFiltro(){
+        if(this.filtro != null){
+
+            Call<Filtro> call = jsonPlaceHolderApiFiltro.
+                    deleteFiltro(this.filtro);
+
+            call.enqueue(new Callback<Filtro>() {
+                @Override
+                public void onResponse(Call<Filtro> call,
+                                       Response<Filtro> response) {
+
+                    if(!response.isSuccessful()){
+                        Toast.makeText(getApplicationContext(),"Erro: "+response.code(),
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    Filtro filtro = response.body();
+                    Toast.makeText(getApplicationContext(),"Filtro: "
+                                    +filtro.getDescricao()+ " excluido com sucesso",
+                            Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Call<Filtro> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(),t.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
     }
 }

@@ -41,6 +41,22 @@ public class FiltroAdapter extends RecyclerView.Adapter<FiltroHolder>{
                 Intent intent = new Intent(activity, FiltroActivity.class);
                 intent.putExtra("id", filtros.get(position).getId());
                 intent.putExtra("descricao", filtros.get(position).getDescricao());
+                intent.putExtra("DELETE", false);
+
+                activity.startActivity(intent);
+
+            }
+        });
+
+
+        holder.btnExcluir.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Activity activity = getActivity(v);
+                Intent intent = new Intent(activity, FiltroActivity.class);
+                intent.putExtra("id", filtros.get(position).getId());
+                intent.putExtra("descricao", filtros.get(position).getDescricao());
+                intent.putExtra("DELETE", true);
 
                 activity.startActivity(intent);
 

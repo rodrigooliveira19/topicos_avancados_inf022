@@ -51,6 +51,11 @@ public class UnidadeActivity extends AppCompatActivity {
             this.unidade.setId(id);
             this.unidade.setDescricao(descricao);
             this.textDescricao.getEditText().setText(descricao);
+
+            boolean opDelete = extra.getBoolean("DELETE");
+            if(opDelete){
+                this.deleteUnidade();
+            }
         }
     }
 
@@ -160,5 +165,38 @@ public class UnidadeActivity extends AppCompatActivity {
 
         }
         return  false;
+    }
+
+    private void deleteUnidade(){
+        if(this.unidade != null){
+
+            Call<Unidade> call = jsonPlaceHolderApiUnidade.
+                    deleteUnidade(this.unidade);
+
+            call.enqueue(new Callback<Unidade>() {
+                @Override
+                public void onResponse(Call<Unidade> call,
+                                       Response<Unidade> response) {
+
+                    if(!response.isSuccessful()){
+                        Toast.makeText(getApplicationContext(),"Erro: "+response.code(),
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    Unidade unidade = response.body();
+                    Toast.makeText(getApplicationContext(),"Unidade: "
+                                    +unidade.getDescricao()+ " excluido com sucesso",
+                            Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Call<Unidade> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(),t.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
     }
 }

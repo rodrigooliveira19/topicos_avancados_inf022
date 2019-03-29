@@ -41,6 +41,22 @@ public class MarcaAdapter extends RecyclerView.Adapter<MarcaHolder>{
                 Intent intent = new Intent(activity, MarcaActivity.class);
                 intent.putExtra("id", marcas.get(position).getId());
                 intent.putExtra("descricao", marcas.get(position).getDescricao());
+                intent.putExtra("DELETE",false);
+
+                activity.startActivity(intent);
+
+            }
+        });
+
+
+        holder.btnExcluir.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Activity activity = getActivity(v);
+                Intent intent = new Intent(activity, MarcaActivity.class);
+                intent.putExtra("id", marcas.get(position).getId());
+                intent.putExtra("descricao", marcas.get(position).getDescricao());
+                intent.putExtra("DELETE",true);
 
                 activity.startActivity(intent);
 

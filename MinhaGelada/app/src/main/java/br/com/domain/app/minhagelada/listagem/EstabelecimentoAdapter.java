@@ -36,7 +36,6 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
     public void onBindViewHolder(EstabelecimentoHolder holder, final int position) {
         holder.descricao.setText(estabelecimentos.get(position).getDescricao());
 
-        //this.estabelecimento = estabelecimentos.get(position);
         holder.btnEditar.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +43,21 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
                 Intent intent = new Intent(activity, EstabelecimentoActivity.class);
                 intent.putExtra("id", estabelecimentos.get(position).getId());
                 intent.putExtra("descricao", estabelecimentos.get(position).getDescricao());
+                intent.putExtra("DELETE",false);
+
+                activity.startActivity(intent);
+
+            }
+        });
+
+        holder.btnExcluir.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Activity activity = getActivity(v);
+                Intent intent = new Intent(activity, EstabelecimentoActivity.class);
+                intent.putExtra("id", estabelecimentos.get(position).getId());
+                intent.putExtra("descricao", estabelecimentos.get(position).getDescricao());
+                intent.putExtra("DELETE",true);
 
                 activity.startActivity(intent);
 

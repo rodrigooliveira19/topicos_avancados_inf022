@@ -21,4 +21,7 @@ public interface JsonPlaceHolderApiUnidade {
 
     @POST("atualizarUnidade/")
     Call<Unidade> updateUnidade(@Body Unidade unidade);
+
+    @POST("excluirUnidade/")
+    Call<Unidade> deleteUnidade(@Body Unidade unidade);
 }

@@ -22,4 +22,7 @@ public interface JsonPlaceHolderApiEstabelecimento {
 
     @POST("atualizarEstabelecimento/")
     Call<Estabelecimento> updateEstabelecimento(@Body Estabelecimento estabelecimento);
+
+    @POST("excluirEstabelecimento/")
+    Call<Estabelecimento> deleteEstabelecimento(@Body Estabelecimento estabelecimento);
 }

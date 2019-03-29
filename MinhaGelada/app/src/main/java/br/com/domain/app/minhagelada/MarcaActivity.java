@@ -53,6 +53,11 @@ public class MarcaActivity extends AppCompatActivity {
             this.marca.setId(id);
             this.marca.setDescricao(descricao);
             this.textDescricao.getEditText().setText(descricao);
+
+            boolean opDelete = extra.getBoolean("DELETE");
+            if(opDelete){
+                this.deleteMarca();
+            }
         }
 
     }
@@ -165,5 +170,38 @@ public class MarcaActivity extends AppCompatActivity {
 
         }
         return  false;
+    }
+
+    private void deleteMarca(){
+        if(this.marca != null){
+
+            Call<Marca> call = jsonPlaceHolderApiMarca.
+                    deleteMarca(this.marca);
+
+            call.enqueue(new Callback<Marca>() {
+                @Override
+                public void onResponse(Call<Marca> call,
+                                       Response<Marca> response) {
+
+                    if(!response.isSuccessful()){
+                        Toast.makeText(getApplicationContext(),"Erro: "+response.code(),
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    Marca marca = response.body();
+                    Toast.makeText(getApplicationContext(),"Marca: "
+                                    +marca.getDescricao()+ " excluido com sucesso",
+                            Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onFailure(Call<Marca> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(),t.getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
     }
 }
