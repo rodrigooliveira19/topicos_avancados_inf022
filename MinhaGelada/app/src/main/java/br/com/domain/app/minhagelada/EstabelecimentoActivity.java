@@ -32,8 +32,8 @@ public class EstabelecimentoActivity extends AppCompatActivity {
         if(extra != null){
             int id = extra.getInt("id");
             String descricao = extra.getString("descricao");
-            String localizacao = extra.getString("localizacao");
             Toast.makeText(getApplicationContext(),id+""+descricao,Toast.LENGTH_SHORT).show();
+
         }
     }
 

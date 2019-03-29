@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ import br.com.domain.app.minhagelada.entidades.Estabelecimento;
 public class EstabelecimentoAdapter extends RecyclerView.Adapter<EstabelecimentoHolder>{
 
     private final List<Estabelecimento> estabelecimentos;
-    private Estabelecimento estabelecimento = null;
+    //private Estabelecimento estabelecimento = null;
 
     public EstabelecimentoAdapter(List<Estabelecimento> estabelecimentos) {
         this.estabelecimentos = estabelecimentos;
@@ -32,18 +33,19 @@ public class EstabelecimentoAdapter extends RecyclerView.Adapter<Estabelecimento
     }
 
     @Override
-    public void onBindViewHolder(EstabelecimentoHolder holder, int position) {
+    public void onBindViewHolder(EstabelecimentoHolder holder, final int position) {
         holder.descricao.setText(estabelecimentos.get(position).getDescricao());
 
-        this.estabelecimento = estabelecimentos.get(position);
+        //this.estabelecimento = estabelecimentos.get(position);
         holder.btnEditar.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Activity activity = getActivity(v);
                 Intent intent = new Intent(activity, EstabelecimentoActivity.class);
-                intent.putExtra("id", estabelecimento.getId());
-                intent.putExtra("descricao", estabelecimento.getDescricao());
-                intent.putExtra("localizacao", estabelecimento.getLocalizacao());
+                intent.putExtra("id", estabelecimentos.get(position).getId());
+                intent.putExtra("descricao", estabelecimentos.get(position).getDescricao());
+
+
 
                 activity.startActivity(intent);
 
